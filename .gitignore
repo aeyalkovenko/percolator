@@ -1,0 +1,42 @@
+[package]
+name = "percolator"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+
+[lib]
+name = "percolator"
+path = "src/percolator.rs"
+
+[dependencies]
+# No runtime dependencies - pure no_std compatible library
+
+[dev-dependencies]
+proptest = "1.4"
+
+[features]
+default = []
+test = []  # MAX_ACCOUNTS=64 for tests
+stress = []  # Expose test_visible methods but keep MAX_ACCOUNTS=4096
+fuzz = ["test"]  # Enable fuzzing tests (includes test feature for test_visible helpers)
+small = []  # MAX_ACCOUNTS=256 for low-traffic markets
+medium = []  # MAX_ACCOUNTS=1024 for mid-range markets
+audit-scan = []  # Enable full account-table invariant scans on public exits
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+opt-level = 3
+overflow-checks = true
+
+[profile.sbf]
+inherits = "release"
+panic = "abort"
+
+[workspace.metadata.kani]
+flags = { tests = true }
+unstable = { stubbing = true }
+
+[[workspace.metadata.kani.proof]]
+harness = ".*"
+unwind = 70

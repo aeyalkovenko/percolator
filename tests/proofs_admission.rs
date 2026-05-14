@@ -93,18 +93,10 @@ fn ah2_sticky_is_absorbing() {
     let idx = add_user_test(&mut engine, 0).unwrap();
     engine.vault = U128::new(10_000); // plenty of residual — admission WOULD normally give h_min
 
-    let admit_h_min: u8 = kani::any();
-    let admit_h_max: u8 = kani::any();
-    kani::assume((admit_h_min as u64) < (admit_h_max as u64)); // non-degenerate
-    kani::assume(admit_h_max > 0);
-    kani::assume(admit_h_max as u64 <= engine.params.h_max);
 
     let mut ctx = InstructionContext::new_with_admission(admit_h_min as u64, admit_h_max as u64);
     // Force idx into sticky set
     ctx.mark_h_max_sticky(idx);
-
-    let fresh: u8 = kani::any();
-    kani::assume(fresh > 0);
 
     let h_eff = engine
         .admit_fresh_reserve_h_lock(
@@ -116,7 +108,10 @@ fn ah2_sticky_is_absorbing() {
         )
         .unwrap();
 
-    // Sticky forces h_max regardless of residual
+        let fresh: u8 = kani::any();
+        kani::assume(fresh > 0);
+
+        // Sticky forces h_max regardless of residual
     assert!(h_eff == admit_h_max as u64);
     assert!(ctx.is_h_max_sticky(idx));
 }
@@ -146,6 +141,13 @@ fn ah3_no_under_admission() {
 
     let mut ctx = InstructionContext::new_with_admission(admit_h_min as u64, admit_h_max as u64);
 
+    let admit_h_min: u8 = kani::any();
+    let admit_h_max: u8 = kani::any();
+    kani::assume((admit_h_min as u64) < (admit_h_max as u64)); // non-degenerate
+    kani::assume(admit_h_max > 0);
+    kani::assume(admit_h_max as u64 <= engine.params.h_max);
+
+    
     // First admission: residual = 0, any positive fresh overflows → h_max
     let fresh1: u8 = kani::any();
     kani::assume(fresh1 > 0);

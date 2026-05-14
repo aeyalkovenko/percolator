@@ -18,14 +18,6 @@ use common::*;
 fn t3_16_reset_pending_counter_invariant() {
     let mut engine = RiskEngine::new(zero_fee_params());
 
-    let a = add_user_test(&mut engine, 0).unwrap();
-    let b = add_user_test(&mut engine, 0).unwrap();
-    engine.deposit_not_atomic(a, 1_000_000, 0).unwrap();
-    engine.deposit_not_atomic(b, 1_000_000, 0).unwrap();
-
-    let k_val: i8 = kani::any();
-    let k = k_val as i128;
-
     engine.adl_coeff_long = k;
     install_position_test(&mut engine, a as usize, POS_SCALE as i128, ADL_ONE, k, 0).unwrap();
     install_position_test(&mut engine, b as usize, POS_SCALE as i128, ADL_ONE, k, 0).unwrap();
@@ -47,6 +39,14 @@ fn t3_16_reset_pending_counter_invariant() {
         engine.settle_side_effects_live(b as usize, &mut _ctx)
     };
     assert!(engine.stale_account_count_long == 0);
+
+    let a = add_user_test(&mut engine, 0).unwrap();
+    let b = add_user_test(&mut engine, 0).unwrap();
+    engine.deposit_not_atomic(a, 1_000_000, 0).unwrap();
+    engine.deposit_not_atomic(b, 1_000_000, 0).unwrap();
+
+    let k_val: i8 = kani::any();
+    let k = k_val as i128;
 }
 
 #[kani::proof]

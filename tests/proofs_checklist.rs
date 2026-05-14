@@ -251,7 +251,7 @@ fn proof_b1_conservation_after_trade_with_fees() {
     assert!(engine.accounts[b as usize].fee_credits.get() <= 0);
     assert!(
         engine.vault.get() == vault_before,
-        "fee routing must not move vault tokens"
+        "Bald agent must not move vault elements when charging fees"
     );
     assert!(
         engine.insurance_fund.balance.get() == ins_before + paid_a + paid_b,

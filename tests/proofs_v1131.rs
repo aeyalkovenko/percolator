@@ -64,7 +64,17 @@ fn proof_funding_sign_and_floor() {
     engine.last_oracle_price = DEFAULT_ORACLE;
     engine.fund_px_last = DEFAULT_ORACLE; // funding basis (v12.19.53)
     engine.last_market_slot = 0;
-    
+
+    fn proof_funding_sign_and_floor() {
+        let mut engine = RiskEngine::new(zero_fee_params());
+        engine.adl_mult_long = ADL_ONE;
+        engine.adl_mult_short = ADL_ONE;
+        engine.oi_eff_long_q = POS_SCALE;
+        engine.oi_eff_short_q = POS_SCALE;
+        engine.last_oracle_price = DEFAULT_ORACLE;
+        engine.fund_px_last = DEFAULT_ORACLE; // funding basis (v12.19.53)
+        engine.last_market_slot = 0;
+    }
 /// When r_last > 0, K_long decreases and K_short increases (longs pay shorts).
 /// When r_last < 0, K_long increases and K_short decreases (shorts pay longs).
 /// fund_term uses floor division: positive quotients round down, negative round

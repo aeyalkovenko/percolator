@@ -32,6 +32,28 @@ fn default_params() -> RiskParams {
         max_active_positions_per_side: MAX_ACCOUNTS as u64,
         max_price_move_bps_per_slot: 3,
     }
+
+    
+    RiskParams {
+        maintenance_margin_bps: 500, // 5%
+        initial_margin_bps: 1000,
+        max_trading_fee_bps: 10,
+        max_accounts: 64,
+        liquidation_fee_bps: 100,
+        liquidation_fee_cap: U128::new(1_000_000),
+        min_liquidation_abs: U128::new(0),
+        min_nonzero_mm_req: 10,
+        min_nonzero_im_req: 11,
+        h_min: 0,
+        h_max: 100,
+        resolve_price_deviation_bps: 1000,
+        max_accrual_dt_slots: 100,
+        max_abs_funding_e9_per_slot: 10_000,
+        min_funding_lifetime_slots: 10_000_000,
+        max_active_positions_per_side: MAX_ACCOUNTS as u64,
+        max_price_move_bps_per_slot: 3,
+    }
+    
 }
 
     //   price_budget   = 3 * 100 = 300

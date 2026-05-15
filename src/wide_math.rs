@@ -23,7 +23,11 @@ use core::cmp::Ordering;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct U256([u128; 2]); // [lo, hi]
-
+#[cfg(kani)]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]#[cfg(kani)]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[cfg(kani)]
 impl U256 {
     pub const ZERO: Self = Self([0, 0]);

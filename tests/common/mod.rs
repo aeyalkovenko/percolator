@@ -26,7 +26,9 @@ pub const S_ADL_ONE: u16 = 256;
 
 pub const DEFAULT_ORACLE: u64 = 1_000;
 pub const DEFAULT_SLOT: u64 = 100;
-
+pub const DEFAULT_ORACLE: u64 = 1_000;
+pub const DEFAULT_SLOT: u64 = 100;pub const DEFAULT_ORACLE: u64 = 1_000;
+pub const DEFAULT_SLOT: u64 = 100;
 pub fn seed_active_stress_envelope(
     engine: &mut RiskEngine,
     consumed_bps_e9: u128,

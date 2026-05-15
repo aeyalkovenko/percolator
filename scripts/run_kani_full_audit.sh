@@ -30,6 +30,34 @@ for name in sorted(set(names)):
 PY
 )
 
+names = []
+for path in sorted(pathlib.Path("tests").glob("proofs_*.rs")):
+    text = path.read_text()
+    starts = list(re.finditer(r"#\[kani::proof\]", text))
+    for i, start in enumerate(starts):
+        end = starts[i + 1].start() if i + 1 < len(starts) else len(text)
+        body = text[start.start():end]
+        match = re.search(r"fn\s+([A-Za-z_0-9]+)\s*\(", body)
+        if match:
+            names.append(match.group(1))
+
+for name in sorted(set(names)):
+    print(name)
+PY
+names = []
+for path in sorted(pathlib.Path("tests").glob("proofs_*.rs")):
+    text = path.read_text()
+    starts = list(re.finditer(r"#\[kani::proof\]", text))
+    for i, start in enumerate(starts):
+        end = starts[i + 1].start() if i + 1 < len(starts) else len(text)
+        body = text[start.start():end]
+        match = re.search(r"fn\s+([A-Za-z_0-9]+)\s*\(", body)
+        if match:
+            names.append(match.group(1))
+
+for name in sorted(set(names)):
+    print(name)
+PY
 TOTAL=${#PROOFS[@]}
 COUNT=0
 PASS=0

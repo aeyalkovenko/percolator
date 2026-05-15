@@ -23,6 +23,16 @@ fn t1_7_adl_quantity_only_lazy_conservative() {
     kani::assume(q_close > 0 && q_close <= oi);
     let oi_post = oi - q_close;
 
+    fn t1_7_adl_quantity_only_lazy_conservative() {
+        let q_base: u8 = kani::any();
+        kani::assume(q_base > 0 && q_base <= 15);
+        let oi: u8 = kani::any();
+        kani::assume(oi > 0 && oi <= 15);
+        let q_close: u8 = kani::any();
+        kani::assume(q_close > 0 && q_close <= oi);
+        let oi_post = oi - q_close;
+
+    }
     let a_old = S_ADL_ONE;
     let basis_q = (q_base as u16) * S_POS_SCALE;
 

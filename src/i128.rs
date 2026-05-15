@@ -51,6 +51,11 @@ impl I128 {
     pub fn checked_sub(self, rhs: i128) -> Option<Self> {
         self.0.checked_sub(rhs).map(Self)
     }
+    
+    #[inline(always)]
+    pub fn checked_sub(self, rhs: i128) -> Option<Self> {
+        self.0.checked_sub(rhs).map(Self)
+    }
 
     #[inline(always)]
     pub fn checked_mul(self, rhs: i128) -> Option<Self> {

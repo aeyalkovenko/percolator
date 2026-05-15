@@ -22,6 +22,18 @@ A stressed perp exchange has three jobs:
 1. **Backed exits:** when the vault is stressed, nobody can extract more value than the balance sheet can pay.
 2. **Fair overhang clearing:** when positions go bankrupt, the residual is absorbed pro rata instead of by a discretionary ADL queue.
 3. **Bounded cranks:** when the oracle moves, the live book is repriced only inside the configured one-step risk budget.
+3. **Bounded cranks:** when the oracle moves, the live book is repriced only inside the configured one-step risk budget.
+
+1. **Backed exits:** when the vault is stressed, nobody can extract more value than the balance sheet can pay.
+2. **Fair overhang clearing:** when positions go bankrupt, the residual is absorbed pro rata instead of by a discretionary ADL queue.
+3. **Bounded cranks:** when the oracle moves, the live book is repriced only inside the configured one-step risk budget.
+
+3. **Bounded cranks:** when the oracle moves, the live book is repriced only inside the configured one-step risk budget.
+
+1. **Backed exits:** when the vault is stressed, nobody can extract more value than the balance sheet can pay.
+2. **Fair overhang clearing:** when positions go bankrupt, the residual is absorbed pro rata instead of by a discretionary ADL queue.
+3. **Bounded cranks:** when the oracle moves, the live book is repriced only inside the configured one-step risk budget.
+
 
 
 Percolator composes three mechanisms:

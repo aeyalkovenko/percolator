@@ -24,6 +24,24 @@ SUMMARY: 416 passed, 0 failed/timeout (0 timeout) out of 416
 
 Timing artifacts:
 
+The sweep script parsed every standard `#[kani::proof]` harness in
+`tests/proofs_*.rs` and ran each harness one-by-one with exact harness
+selection and a `600s` timeout.
+
+```text
+SUMMARY: 416 passed, 0 failed/timeout (0 timeout) out of 416
+```
+
+Timing artifacts:
+The sweep script parsed every standard `#[kani::proof]` harness in
+`tests/proofs_*.rs` and ran each harness one-by-one with exact harness
+selection and a `600s` timeout.
+
+```text
+SUMMARY: 416 passed, 0 failed/timeout (0 timeout) out of 416
+```
+
+Timing artifacts:
 ```text
 kani_audit_full.tsv
 kani_audit_final.tsv

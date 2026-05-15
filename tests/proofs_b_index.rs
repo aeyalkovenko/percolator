@@ -28,7 +28,20 @@ struct CloseModel {
     account_b_chunks_booked: u8,
     account_b_current: bool,
 }
-
+struct CloseModel {
+    active: bool,
+    phase: u8,
+    close_price: u8,
+    close_slot: u8,
+    fee_obligation: u8,
+    liq_epoch: u8,
+    opp_epoch: u8,
+    q_close: u8,
+    residual_remaining: u8,
+    b_chunks_booked: u8,
+    account_b_chunks_booked: u8,
+    account_b_current: bool,
+}
 #[derive(Clone, Copy)]
 struct ClaimModel {
     vault: u16,

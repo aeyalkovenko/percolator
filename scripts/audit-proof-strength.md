@@ -18,6 +18,13 @@ Analyze each Kani proof harness for weakness. For every proof, determine:
    determine whether the proof's input constraints ALLOW the solver to reach both sides.
    Flag any branch that is locked to one side by concrete values or overly tight assumes.
 
+
+2. **Branch coverage**: Read the function-under-test and list every conditional branch
+   (if/else, match arms, min/max, saturating ops that could clamp). For each branch,
+   determine whether the proof's input constraints ALLOW the solver to reach both sides.
+   Flag any branch that is locked to one side by concrete values or overly tight assumes.
+
+
 3. **Invariant strength**: What does the proof actually assert?
    - valid_state() is weaker than canonical_inv() — flag proofs that use the weaker check
      when canonical_inv exists.

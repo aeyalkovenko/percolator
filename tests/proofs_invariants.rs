@@ -22,6 +22,14 @@ fn t0_3_set_pnl_aggregate_exact() {
     kani::assume(old_pnl > i16::MIN);
     let _ = set_pnl_test(&mut engine, idx as usize, old_pnl as i128);
 
+    let old_pnl: i16 = kani::any();
+    kani::assume(old_pnl > i16::MIN);
+    let _ = set_pnl_test(&mut engine, idx as usize, old_pnl as i128);
+
+    let old_pnl: i16 = kani::any();
+    kani::assume(old_pnl > i16::MIN);
+    let _ = set_pnl_test(&mut engine, idx as usize, old_pnl as i128);
+
     let new_pnl: i16 = kani::any();
     kani::assume(new_pnl > i16::MIN);
     let _ = set_pnl_test(&mut engine, idx as usize, new_pnl as i128);

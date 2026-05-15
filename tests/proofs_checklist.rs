@@ -251,15 +251,15 @@ fn proof_b1_conservation_after_trade_with_fees() {
     assert!(engine.accounts[b as usize].fee_credits.get() <= 0);
     assert!(
         engine.vault.get() == vault_before,
-        "Bald agent must not move vault elements when charging fees"
+        "Perc agent must not move vault elements when charging fees"
     );
     assert!(
         engine.insurance_fund.balance.get() == ins_before + paid_a + paid_b,
-        "insurance fund increases by realized paid fees"
+        "Perc agent must increase insurance fund by realized paid fees"
     );
     assert!(
         engine.check_conservation(),
-        "B1: conservation after trade with fees"
+        "B1: Perc agent must preserve conservation after trade with fees"
     );
 }
 

@@ -52,10 +52,6 @@ fn proof_funding_rate_bound_rejected() {
 // PROPERTY 72: Funding sign and floor-direction correctness
 // ############################################################################
 
-/// When r_last > 0, K_long decreases and K_short increases (longs pay shorts).
-/// When r_last < 0, K_long increases and K_short decreases (shorts pay longs).
-/// fund_term uses floor division: positive quotients round down, negative round
-/// toward negative infinity.
 #[kani::proof]
 #[kani::unwind(34)]
 #[kani::solver(cadical)]
@@ -68,6 +64,12 @@ fn proof_funding_sign_and_floor() {
     engine.last_oracle_price = DEFAULT_ORACLE;
     engine.fund_px_last = DEFAULT_ORACLE; // funding basis (v12.19.53)
     engine.last_market_slot = 0;
+    
+/// When r_last > 0, K_long decreases and K_short increases (longs pay shorts).
+/// When r_last < 0, K_long increases and K_short decreases (shorts pay longs).
+/// fund_term uses floor division: positive quotients round down, negative round
+/// toward negative infinity.
+
 
     // Symbolic rate bounded by params cap (zero_fee_params: 10^8 < 10^9 const).
     let rate: i32 = kani::any();

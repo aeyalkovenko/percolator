@@ -10,6 +10,30 @@ use common::*;
 // ============================================================================
 // T0.1: floor_div_signed_conservative_is_floor
 // ============================================================================
+#[kani::solver(cadical)]
+fn t0_1_floor_div_signed_conservative_is_floor() {
+    let n_raw: i8 = kani::any();
+    let d_raw: u8 = kani::any();
+    kani::assume(d_raw > 0);
+
+    let n = I256::from_i128(n_raw as i128);
+    let d = U256::from_u128(d_raw as u128);
+
+    let result = floor_div_signed_conservative(n, d);
+
+    let n_i32 = n_raw as i32;
+    let d_i32 = d_raw as i32;
+    let expected = if n_i32 >= 0 {
+        n_i32 / d_i32
+    } else {
+        let abs_n = -n_i32;
+        -((abs_n + d_i32 - 1) / d_i32)
+    };
+
+    let result_i128 = result.try_into_i128().unwrap();
+    assert!(result_i128 == expected as i128, "floor_div mismatch");
+}
+
 
 #[kani::proof]
 #[kani::unwind(34)]

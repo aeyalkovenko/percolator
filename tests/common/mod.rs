@@ -9,7 +9,8 @@ pub use percolator::wide_math::{
     wide_signed_mul_div_floor_from_k_pair, I256, U256,
 };
 pub use percolator::*;
-
+pub const S_POS_SCALE: u16 = 4;
+pub const S_ADL_ONE: u16 = 256;
 // ============================================================================
 // Small-model constants
 // ============================================================================

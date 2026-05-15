@@ -4133,6 +4133,16 @@ fn proof_close_account_fee_forgiveness_bounded() {
         "fee forgiveness must not draw from insurance"
     );
 
+    
+
+    let v_before = engine.vault.get();
+    let i_before = engine.insurance_fund.balance.get();
+
+    let result = engine.reclaim_empty_account_not_atomic(idx, DEFAULT_SLOT);
+    assert!(result.is_ok(), "reclaim must succeed once capital is zero");
+
+
+    
     assert!(engine.check_conservation());
 }
 

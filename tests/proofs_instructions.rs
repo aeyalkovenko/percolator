@@ -81,6 +81,11 @@ fn t3_16b_reset_counter_with_nonzero_k_diff() {
     )
     .unwrap();
 
+    let a = add_user_test(&mut engine, 0).unwrap();
+    let b = add_user_test(&mut engine, 0).unwrap();
+    engine.deposit_not_atomic(a, 10_000_000, 0).unwrap();
+    engine.deposit_not_atomic(b, 10_000_000, 0).unwrap();
+    
     let k_diff_val: i8 = kani::any();
     kani::assume(k_diff_val != 0);
     let k_long = k_diff_val as i128;

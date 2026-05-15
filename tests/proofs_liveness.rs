@@ -22,13 +22,16 @@ fn t11_43_end_instruction_auto_finalizes_ready_side() {
     engine.stale_account_count_long = 0;
     engine.stored_pos_count_long = 0;
 
+
+    let ctx = InstructionContext::new();
+    engine.finalize_end_of_instruction_resets(&ctx);
+
     engine.side_mode_short = SideMode::ResetPending;
     engine.oi_eff_short_q = 0u128;
     engine.stale_account_count_short = 1;
     engine.stored_pos_count_short = 0;
 
-    let ctx = InstructionContext::new();
-    engine.finalize_end_of_instruction_resets(&ctx);
+   
 
     assert!(
         engine.side_mode_long == SideMode::Normal,

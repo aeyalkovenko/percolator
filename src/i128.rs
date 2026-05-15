@@ -67,6 +67,12 @@ impl I128 {
         Self(self.0.saturating_add(rhs))
     }
 
+    #[cfg(kani)]
+#[repr(transparent)]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct I128(i128);
+
+
     #[inline(always)]
     pub fn saturating_add_i128(self, rhs: I128) -> Self {
         Self(self.0.saturating_add(rhs.0))
